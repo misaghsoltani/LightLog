@@ -1,0 +1,63 @@
+[build-system]
+requires = ["scikit-build-core >=0.4.3", "nanobind >=1.3.2"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "LightLog"
+dynamic = ["version"]
+license = { file = "LICENSE" }
+description = "A lightweight, flexible logging library for Python with a C++ core and support for distributed computing environments"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "Misagh Soltani", email = "msoltani@email.sc.edu" }]
+keywords = [
+    "logging",
+    "debug",
+    "development-tools",
+    "python",
+    "rank-aware-logging",
+    "print-redirection",
+    "file-logging",
+    "console-logging",
+    "multi-process",
+    "parallel-computing",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: C++",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: System :: Logging",
+]
+
+[project.urls]
+Homepage = "https://github.com/misaghsoltani/LightLog"
+Documentation = "https://github.com/misaghsoltani/LightLog#readme"
+"Bug Tracker" = "https://github.com/misaghsoltani/LightLog/issues"
+
+[tool.scikit-build]
+minimum-version = "0.4"
+wheel.license-files = ["LICENSE"]
+messages.after-success = "{green}Wheel successfully built"
+messages.after-failure = "{bold.red}Sorry{normal}, build failed. Your platform is {platform.platform}."
+
+# Setuptools-style build caching in a local directory
+build-dir = "build/{wheel_tag}"
+
+# Build stable ABI wheels for CPython 3.12+
+wheel.py-api = "cp312"
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "src/lightlog/__init__.py"
